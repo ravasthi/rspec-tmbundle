@@ -3,16 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>after${1|,(:each),(:all),(:suite)|} do
+	<string>background${1|,(:each),(:all),(:suite)|} do
   $0
-end</string>
+end
+</string>
 	<key>name</key>
-	<string>after</string>
+	<string>background</string>
 	<key>scope</key>
 	<string>source.ruby.rspec</string>
 	<key>tabTrigger</key>
-	<string>aft</string>
+	<string>back</string>
 	<key>uuid</key>
-	<string>1201777F-3AC4-4B2A-9A46-C215F891B07A</string>
+	<string>64EE7CF8-0C53-434F-B8CF-92DC97696C7B</string>
 </dict>
 </plist>

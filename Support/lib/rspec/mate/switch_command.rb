@@ -15,8 +15,7 @@ module RSpec
           file_type = file_type(other)
 
           if create?(relative, file_type)
-            content = content_for(file_type, relative)
-            write_and_open(other, content)
+            write_and_open(other)
           end
         end
       end
@@ -104,32 +103,6 @@ module RSpec
         answer.to_s.chomp == "1"
       end
 
-      def content_for(file_type, relative_path)
-        case file_type
-          when /spec$/ then
-            spec(relative_path)
-          when "controller"
-            <<-CONTROLLER
-class #{class_from_path(relative_path)} < ApplicationController
-end
-CONTROLLER
-          when "model"
-            <<-MODEL
-class #{class_from_path(relative_path)} < ActiveRecord::Base
-end
-MODEL
-          when "helper"
-            <<-HELPER
-module #{class_from_path(relative_path)}
-end
-HELPER
-          when "view"
-            ""
-          else
-            klass(relative_path)
-        end
-      end
-
       def class_from_path(path)
         underscored = path.split('/').last.split('.rb').first
         parts = underscored.split('_')
@@ -138,26 +111,6 @@ HELPER
           word << part.capitalize
           word
         end
-      end
-
-      # Extracts the snippet text
-      def snippet(snippet_name)
-        snippet_file = File.expand_path(
-          File.dirname(__FILE__) +
-          "/../../../../Snippets/#{snippet_name}"
-        )
-
-        xml = File.open(snippet_file).read
-
-        xml.match(/<key>content<\/key>\s*<string>([^<]*)<\/string>/m)[1]
-      end
-
-      def spec(path)
-        content = <<-SPEC
-require 'spec_helper'
-
-#{snippet("Describe_type.tmSnippet")}
-SPEC
       end
 
       def klass(relative_path, content=nil)
@@ -184,7 +137,7 @@ SPEC
         lines.join("\n") + "\n"
       end
 
-      def write_and_open(path, content)
+      def write_and_open(path)
         FileUtils.mkdir_p(File.dirname(path))
         described = described_class_for(path, ENV['TM_PROJECT_DIRECTORY'])
         File.open(path, 'w') do |f|

@@ -52,7 +52,7 @@
 	<array>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\.)\b(before|after|around)\b(?![?!])</string>
+			<string>(?&lt;!\.)\b(before|after|around|background)\b(?![?!])</string>
 			<key>name</key>
 			<string>keyword.other.rspec</string>
 		</dict>
@@ -90,7 +90,7 @@
 		<key>behaviour</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(describe|context|feature)\b(?=.*\bdo\s*$)</string>
+			<string>^\s*([fx]?(?:describe|context|feature))\b(?=.*\bdo\s*$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -134,14 +134,14 @@
 			<key>comment</key>
 			<string>Behaviours with multiline descriptions are not matched by `behaviour`, so as a fallback we just highlight the bare keywords</string>
 			<key>match</key>
-			<string>^\s*(describe|context|feature)\b</string>
+			<string>^\s*([fx]?(?:describe|context|feature))\b</string>
 			<key>name</key>
 			<string>meta.rspec.behaviour</string>
 		</dict>
 		<key>example</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(it|specify|scenario)\b(?=.*\bdo\s*$)</string>
+			<string>^\s*([fx]?(?:it|specify|scenario))\b(?=.*\bdo\s*$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -185,7 +185,7 @@
 			<key>comment</key>
 			<string>Examples with multiline descriptions are not matched by `behaviour`, so as a fallback we just highlight the bare keywords</string>
 			<key>match</key>
-			<string>^\s*(it|specify|scenario)\b</string>
+			<string>^\s*([fx]?(?:it|specify|scenario))\b</string>
 			<key>name</key>
 			<string>meta.rspec.example</string>
 		</dict>
@@ -207,7 +207,7 @@
 			<key>comment</key>
 			<string>This only works with simple single / double quoted strings. But matching too liberally causes bugs (see https://github.com/rspec/rspec-tmbundle/issues/45), so better err on the safe side.</string>
 			<key>match</key>
-			<string>^\s*(it|specify|scenario|describe|context|feature)\s+("[^"]*"|'[^']*')(?&lt;!do)\s*$</string>
+			<string>^\s*([fx]?(?:it|specify|scenario|describe|context|feature))\s+("[^"]*"|'[^']*')(?&lt;!do)\s*$</string>
 			<key>name</key>
 			<string>meta.rspec.pending</string>
 		</dict>
@@ -222,7 +222,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*(it|specify|scenario)\s*{</string>
+			<string>^\s*([fx]?(?:it|specify|scenario))\s*{</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>

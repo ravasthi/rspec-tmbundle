@@ -43,28 +43,6 @@ module RSpec
           "/a/full/path/lib/snoopy/mooky.rb".should be_a("file")
         end
 
-        it "create a spec for spec files" do
-          regular_spec = <<-SPEC
-require 'spec_helper'
-
-describe ${1:${TM_FILENAME/(?:\\A|_)([A-Za-z0-9]+)(?:(?:_spec)?\\.[a-z]+)*/(?2::\\u$1)/g}} do
-  $0
-end
-SPEC
-          SwitchCommand.new.content_for('spec', "spec/foo/zap_spec.rb").should == regular_spec
-          SwitchCommand.new.content_for('spec', "spec/controller/zap_spec.rb").should == regular_spec
-        end
-
-        it "create class for regular file" do
-          file = <<-EOF
-module Foo
-  class Zap
-  end
-end
-EOF
-          SwitchCommand.new.content_for('file', "lib/foo/zap.rb").should == file
-          SwitchCommand.new.content_for('file', "some/other/path/lib/foo/zap.rb").should == file
-        end
       end
 
       describe "in a Rails or Merb app" do
@@ -190,35 +168,6 @@ EOF
           "/a/full/path/app/views/mooky/show.js.rjs".should be_a("view")
         end
 
-        it "create a spec that requires a helper" do
-          SwitchCommand.new.content_for('controller spec', "spec/controllers/mooky_controller_spec.rb").split("\n")[0].should ==
-            "require 'spec_helper'"
-        end
-
-        it "creates a controller if twinned from a controller spec" do
-          SwitchCommand.new.content_for('controller', "spec/controllers/mooky_controller.rb").should == <<-EXPECTED
-class MookyController < ApplicationController
-end
-EXPECTED
-        end
-
-        it "creates a model if twinned from a model spec" do
-          SwitchCommand.new.content_for('model', "spec/models/mooky.rb").should == <<-EXPECTED
-class Mooky < ActiveRecord::Base
-end
-EXPECTED
-        end
-
-        it "creates a helper if twinned from a helper spec" do
-          SwitchCommand.new.content_for('helper', "spec/helpers/mooky_helper.rb").should == <<-EXPECTED
-module MookyHelper
-end
-EXPECTED
-        end
-
-        it "creates an empty view if twinned from a view spec" do
-          SwitchCommand.new.content_for('view', "spec/views/mookies/index.html.erb_spec.rb").should == ""
-        end
       end
 
       describe '#described_class_for' do
