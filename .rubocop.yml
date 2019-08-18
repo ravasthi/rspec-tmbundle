@@ -1,0 +1,55 @@
+inherit_from: .rubocop_rspec_base.yml
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - "Support/syntax/syntax_highlight_test_spec.rb"
+RSpec/ExampleWording:
+  Exclude:
+    - "Support/fixtures/*_spec.rb"
+  
+# Relax some metric cops for now. All of these should be removed eventually.
+
+AbcSize: 
+  Max: 40
+  
+BlockLength:
+  Max: 180
+  
+ClassLength:
+  Max: 130
+  
+LineLength:
+  Max: 150
+  
+MethodLength:
+  Max: 50
+  
+ModuleLength:
+  Max: 160
+
+PerceivedComplexity:
+  Max: 12
+  
+# Customize rubocop-rspec
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExpectActual:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+  
+RSpec/MessageSpies:
+  Enabled: false
+  
+RSpec/MultipleExpectations:
+  Enabled: false
+  
+RSpec/NotToNot:
+  EnforcedStyle: to_not

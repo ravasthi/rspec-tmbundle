@@ -12,7 +12,7 @@
 cat &lt;&lt;'RUBYEOF' &gt; /tmp/textmate-command-$$.rb
 
 require ENV['TM_BUNDLE_SUPPORT'] + "/lib/rspec/mate"
-RSpec::Mate::Runner.new.run_file STDOUT
+RSpec::Mate::Runner.new.run_file
 
 RUBYEOF
 
@@ -35,7 +35,7 @@ ${TM_RUBY:-ruby} /tmp/textmate-command-$$.rb; exit_status=$?; rm /tmp/textmate-c
 	<key>outputLocation</key>
 	<string>newWindow</string>
 	<key>scope</key>
-	<string>source.ruby.rspec</string>
+	<string>source.ruby.rspec, source.ruby.rspec source.ruby</string>
 	<key>uuid</key>
 	<string>B5906021-8E54-4863-A13B-EA46333DB5F2</string>
 	<key>version</key>

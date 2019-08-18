@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>allow(${1:book}).to receive(${2::title}) { ${0:"The RSpec Book"} }</string>
+	<key>name</key>
+	<string>allow</string>
+	<key>scope</key>
+	<string>source.ruby.rspec</string>
+	<key>tabTrigger</key>
+	<string>all</string>
+	<key>uuid</key>
+	<string>A6BC9A0E-B0F4-4879-A4D3-AB1517147B40</string>
+</dict>
+</plist>

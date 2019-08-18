@@ -1,9 +1,9 @@
 describe "An example failing spec" do
   it "should pass" do
-    true.should be_true
+    expect(true).to be true
   end
 
   it "should pass too" do
-    false.should be_false
+    expect(false).to be false
   end
 end

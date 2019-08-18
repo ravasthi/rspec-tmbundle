@@ -7,7 +7,7 @@
 		<string>spec.rb</string>
 	</array>
 	<key>firstLineMatch</key>
-	<string>.*spec_helper.*</string>
+	<string>.*(rails_helper|spec_helper|rspec/autorun).*</string>
 	<key>foldingStartMarker</key>
 	<string>(?x)^
 	    (\s*+
@@ -90,10 +90,15 @@
 		<key>behaviour</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*([fx]?(?:describe|context|feature))\b(?=.*\bdo\s*$)</string>
+			<string>^\s*(RSpec\.)?([fx]?(?:describe|context|feature))\b(?=.*\bdo\s*$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.rspec</string>
+				</dict>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.other.rspec.behaviour</string>
@@ -102,7 +107,7 @@
 			<key>comment</key>
 			<string>Begin regexp must not match pending behaviours (see https://github.com/rspec/rspec-tmbundle/issues/31).</string>
 			<key>end</key>
-			<string>\b(do)\s*$</string>
+			<string>\b(do)(?=\s*$)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -128,13 +133,18 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>entity.name.type.rspec</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>keyword.other.rspec.behaviour</string>
 				</dict>
 			</dict>
 			<key>comment</key>
 			<string>Behaviours with multiline descriptions are not matched by `behaviour`, so as a fallback we just highlight the bare keywords</string>
 			<key>match</key>
-			<string>^\s*([fx]?(?:describe|context|feature))\b</string>
+			<string>^\s*(RSpec\.)?([fx]?(?:describe|context|feature))\b</string>
 			<key>name</key>
 			<string>meta.rspec.behaviour</string>
 		</dict>
@@ -196,9 +206,14 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.other.rspec.pending</string>
+					<string>entity.name.type.rspec</string>
 				</dict>
 				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.rspec.pending</string>
+				</dict>
+				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>string.ruby</string>
@@ -207,7 +222,7 @@
 			<key>comment</key>
 			<string>This only works with simple single / double quoted strings. But matching too liberally causes bugs (see https://github.com/rspec/rspec-tmbundle/issues/45), so better err on the safe side.</string>
 			<key>match</key>
-			<string>^\s*([fx]?(?:it|specify|scenario|describe|context|feature))\s+("[^"]*"|'[^']*')(?&lt;!do)\s*$</string>
+			<string>^\s*(?:RSpec\.)?([fx]?(?:it|specify|scenario|describe|context|feature))\s+("[^"]*"|'[^']*')(?&lt;!do)\s*$</string>
 			<key>name</key>
 			<string>meta.rspec.pending</string>
 		</dict>

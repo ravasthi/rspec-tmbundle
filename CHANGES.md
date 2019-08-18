@@ -1,5 +1,9 @@
 This file is intended to give a quick overview of important and potentially non-backward-compatible changes. Please refer to the git log for a full list of changes.
 
+# February, 2017
+ * Support for RSpec 2 has been dropped from master. Please use the branch `rspec2` instead.
+ * The shortcut for “Run Again” has been changed from <kbd>⌥⌘R</kbd> to <kbd>⌃⌥⌘R</kbd> so it no longer overrides  TextMate’s shortcut for Edit → Find → Find Behaviour → Regular Expression.
+ 
 # August, 2014
  
  * There is a new “Run Again” command, bound to <kbd>⌥⌘R</kbd>. (“Run Last Example File” is still available but has no longer a shortcut by default.)
